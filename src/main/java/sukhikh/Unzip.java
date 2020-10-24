@@ -30,7 +30,8 @@ public class Unzip {
                 ze = zis.getNextEntry();
                 continue;
             }
-            File createFile = new File(nextFile.getPath().substring(1));
+
+            File createFile = (nextFile.getPath().startsWith(".."))? new File(nextFile.getPath().substring(1)) : nextFile;
             if (ze.isDirectory()) { //если сущность оказалась директорий, то создаём директорию
                 createFile.mkdir();
             } else { //если сущность оказалась файлом
